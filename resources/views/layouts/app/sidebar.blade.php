@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="dark">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
         @include('partials.head')
     </head>
-    <body class="min-h-screen bg-white dark:bg-zinc-800">
-        <flux:sidebar sticky collapsible="mobile" class="border-e border-zinc-200 bg-zinc-50 dark:border-zinc-700 dark:bg-zinc-900">
+    <body class="wp-theme min-h-screen bg-[var(--wp-cream)] text-[var(--wp-ink)]">
+        <flux:sidebar sticky collapsible="mobile" class="border-e border-black/10 bg-white">
             <flux:sidebar.header>
                 <x-app-logo :sidebar="true" href="{{ route('dashboard') }}" wire:navigate />
                 <flux:sidebar.collapse class="lg:hidden" />
@@ -15,18 +15,26 @@
                     <flux:sidebar.item icon="home" :href="route('dashboard')" :current="request()->routeIs('dashboard')" wire:navigate>
                         {{ __('Dashboard') }}
                     </flux:sidebar.item>
+                    <flux:sidebar.item icon="plus" :href="route('listing.create')" wire:navigate>
+                        {{ __('Plaats advertentie') }}
+                    </flux:sidebar.item>
+                    <flux:sidebar.item icon="heart" :href="route('favorites.index')" wire:navigate>
+                        {{ __('Favorieten') }}
+                    </flux:sidebar.item>
+                    <flux:sidebar.item icon="chat-bubble-left-right" :href="route('inbox.index')" wire:navigate>
+                        {{ __('Inbox') }}
+                    </flux:sidebar.item>
+                    <flux:sidebar.item icon="receipt-percent" :href="route('orders.index')" wire:navigate>
+                        {{ __('Orders') }}
+                    </flux:sidebar.item>
                 </flux:sidebar.group>
             </flux:sidebar.nav>
 
             <flux:spacer />
 
             <flux:sidebar.nav>
-                <flux:sidebar.item icon="folder-git-2" href="https://github.com/laravel/livewire-starter-kit" target="_blank">
-                    {{ __('Repository') }}
-                </flux:sidebar.item>
-
-                <flux:sidebar.item icon="book-open-text" href="https://laravel.com/docs/starter-kits#livewire" target="_blank">
-                    {{ __('Documentation') }}
+                <flux:sidebar.item icon="arrow-up-right" href="{{ route('home') }}" wire:navigate>
+                    {{ __('Naar home') }}
                 </flux:sidebar.item>
             </flux:sidebar.nav>
 
@@ -35,7 +43,7 @@
 
 
         <!-- Mobile User Menu -->
-        <flux:header class="lg:hidden">
+        <flux:header class="lg:hidden bg-white border-b border-black/10">
             <flux:sidebar.toggle class="lg:hidden" icon="bars-2" inset="left" />
 
             <flux:spacer />

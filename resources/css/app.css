@@ -39,6 +39,10 @@
 
 @layer base {
 
+    :root {
+        color-scheme: light;
+    }
+
     *,
     ::after,
     ::before,
@@ -56,6 +60,54 @@
         --wp-teal: #1f8a8a;
         --wp-forest: #0f3b2f;
         --wp-mist: #f5efe6;
+    }
+
+    html,
+    body,
+    body.wp-theme {
+        background-color: var(--wp-cream) !important;
+        color: var(--wp-ink) !important;
+    }
+
+    .dark body,
+    .dark body.wp-theme {
+        background-color: var(--wp-cream) !important;
+        color: var(--wp-ink) !important;
+    }
+
+    [data-flux-control] {
+        background-color: #ffffff;
+        color: var(--wp-ink);
+    }
+
+    [data-flux-control]::placeholder {
+        color: rgba(29, 26, 22, 0.45);
+    }
+
+    .wp-auth-card,
+    .wp-auth-card :where(p, span, label, div, input, button) {
+        color: var(--wp-ink) !important;
+    }
+
+    .wp-auth-card {
+        background-color: #ffffff !important;
+    }
+
+    .wp-auth-card [data-flux-heading],
+    .wp-auth-card [data-flux-subheading],
+    .wp-auth-card [data-flux-text],
+    .wp-auth-card [data-flux-label] {
+        color: var(--wp-ink) !important;
+    }
+
+    .wp-auth-card a,
+    .wp-auth-card [data-flux-link] {
+        color: var(--wp-coral) !important;
+    }
+
+    .wp-auth-card a:hover,
+    .wp-auth-card [data-flux-link]:hover {
+        color: var(--wp-ink) !important;
     }
 }
 
