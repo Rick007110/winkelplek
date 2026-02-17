@@ -21,7 +21,7 @@
                 </div>
             @endif
 
-            <form method="POST" action="{{ route('listing.store') }}" class="mt-6 grid gap-6">
+            <form method="POST" action="{{ route('listing.store') }}" class="mt-6 grid gap-6" enctype="multipart/form-data">
                 @csrf
                 <div class="grid gap-4 lg:grid-cols-[2fr_1fr]">
                     <flux:input name="title" label="Titel" placeholder="Bijv. Gazelle stadsfiets" value="{{ old('title') }}" required />
@@ -43,6 +43,24 @@
                     <flux:input name="price_amount" label="Prijs (EUR)" placeholder="Bijv. 150" value="{{ old('price_amount') }}" required />
                     <flux:input name="condition" label="Conditie" placeholder="Bijv. gebruikt" value="{{ old('condition') }}" required />
                     <flux:input name="city" label="Plaats" placeholder="Bijv. Utrecht" value="{{ old('city') }}" required />
+                </div>
+
+                <div class="rounded-lg border border-black/10 bg-white p-4">
+                    <p class="text-sm font-semibold">Foto's</p>
+                    <p class="mt-1 text-sm text-black/60">Upload maximaal 6 foto's (JPG/PNG/WebP).</p>
+                    <input
+                        type="file"
+                        name="images[]"
+                        accept="image/*"
+                        multiple
+                        class="mt-3 block w-full rounded-md border border-black/20 bg-white px-3 py-2 text-sm text-black/70 file:me-4 file:rounded file:border-0 file:bg-[color:var(--wp-ink)] file:px-3 file:py-2 file:text-sm file:font-semibold file:text-white hover:file:bg-black/80"
+                    />
+                    @error('images')
+                        <p class="mt-2 text-xs text-red-600">{{ $message }}</p>
+                    @enderror
+                    @error('images.*')
+                        <p class="mt-2 text-xs text-red-600">{{ $message }}</p>
+                    @enderror
                 </div>
 
                 <label class="flex items-center gap-3 rounded-lg border border-black/10 bg-[color:var(--wp-mist)]/60 px-4 py-3 text-sm text-black/70">

@@ -28,7 +28,7 @@ Route::get('/', function () {
 })->name('home');
 
 Route::get('/explore', [ExploreController::class, 'index'])->name('explore');
-Route::get('/profiles/{user}', [ProfileController::class, 'show'])->name('profile.show');
+Route::get('/u/{user}', [ProfileController::class, 'show'])->name('profile.show');
 
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/listing/create', [ListingController::class, 'create'])->name('listing.create');

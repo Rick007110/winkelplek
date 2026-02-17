@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\Bid;
 use App\Models\Listing;
+use App\Models\ListingPhoto;
 use App\Models\Location;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -15,7 +16,13 @@ class ListingController extends Controller
 {
     public function show(Listing $listing): View
     {
-        $listing->load(['user.profile', 'category', 'location', 'bids.bidder']);
+        $listing->load([
+            'user.profile',
+            'category',
+            'location',
+            'bids.bidder',
+            'photos' => fn ($query) => $query->orderByDesc('is_primary')->orderBy('sort_order'),
+        ]);
         $bids = $listing->bids->sortByDesc('amount')->values();
 
         return view('pages.listings.show', [
@@ -41,6 +48,8 @@ class ListingController extends Controller
             'condition' => ['required', 'string', 'max:50'],
             'city' => ['required', 'string', 'max:120'],
             'bidding_enabled' => ['nullable', 'boolean'],
+            'images' => ['nullable', 'array', 'max:6'],
+            'images.*' => ['image', 'max:4096'],
         ]);
 
         $priceAmount = $this->parsePriceToCents($data['price_amount']);
@@ -67,6 +76,20 @@ class ListingController extends Controller
             'bidding_enabled' => $request->boolean('bidding_enabled'),
             'published_at' => now(),
         ]);
+
+        if ($request->hasFile('images')) {
+            foreach ($request->file('images') as $index => $image) {
+                $path = $image->store('listings', 'public');
+
+                ListingPhoto::create([
+                    'listing_id' => $listing->id,
+                    'path' => $path,
+                    'alt_text' => $listing->title,
+                    'sort_order' => $index,
+                    'is_primary' => $index === 0,
+                ]);
+            }
+        }
 
         return redirect()->route('listing.show', ['listing' => $listing->slug]);
     }

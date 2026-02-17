@@ -13,6 +13,8 @@
         $bids = $bids ?? collect();
         $highestBid = $bids->first();
         $formatPrice = fn (int $amount) => ($listing->currency ?? 'EUR') . ' ' . number_format($amount / 100, 0, ',', '.');
+        $photos = $listing->photos ?? collect();
+        $primaryPhoto = $photos->first();
     @endphp
 
     <section class="mx-auto w-full max-w-6xl px-6 pb-6 pt-6">
@@ -30,12 +32,28 @@
     <section class="mx-auto w-full max-w-6xl px-6 pb-16">
         <div class="grid gap-6 lg:grid-cols-[0.65fr_0.35fr]">
             <div class="space-y-4">
-                <div class="h-72 rounded-lg border border-black/10 bg-[color:var(--wp-sand)]/70"></div>
-                <div class="grid gap-3 sm:grid-cols-3">
-                    <div class="h-24 rounded-md bg-[color:var(--wp-amber)]/30"></div>
-                    <div class="h-24 rounded-md bg-[color:var(--wp-teal)]/20"></div>
-                    <div class="h-24 rounded-md bg-[color:var(--wp-mist)]"></div>
+                <div class="h-72 overflow-hidden rounded-lg border border-black/10 bg-[color:var(--wp-sand)]/70">
+                    @if ($primaryPhoto)
+                        <img
+                            src="{{ asset('storage/'.$primaryPhoto->path) }}"
+                            alt="{{ $primaryPhoto->alt_text ?? $listingTitle }}"
+                            class="h-full w-full object-cover"
+                        />
+                    @endif
                 </div>
+                @if ($photos->count() > 1)
+                    <div class="grid gap-3 sm:grid-cols-3">
+                        @foreach ($photos->skip(1)->take(3) as $photo)
+                            <div class="h-24 overflow-hidden rounded-md border border-black/10 bg-[color:var(--wp-mist)]">
+                                <img
+                                    src="{{ asset('storage/'.$photo->path) }}"
+                                    alt="{{ $photo->alt_text ?? $listingTitle }}"
+                                    class="h-full w-full object-cover"
+                                />
+                            </div>
+                        @endforeach
+                    </div>
+                @endif
 
                 <div class="rounded-lg border border-black/10 bg-white p-4">
                     <h2 class="text-sm font-semibold">Beschrijving</h2>
