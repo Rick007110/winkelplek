@@ -72,6 +72,7 @@
             </footer>
         </div>
 
+        @livewireScripts
         @fluxScripts
     </body>
 </html>
