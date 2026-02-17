@@ -28,17 +28,22 @@ Route::get('/', function () {
 })->name('home');
 
 Route::get('/explore', [ExploreController::class, 'index'])->name('explore');
-Route::get('/listing/{listing:slug}', [ListingController::class, 'show'])->name('listing.show');
 Route::get('/profiles/{user}', [ProfileController::class, 'show'])->name('profile.show');
 
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/listing/create', [ListingController::class, 'create'])->name('listing.create');
+    Route::post('/listing', [ListingController::class, 'store'])->name('listing.store');
+    Route::post('/listing/{listing:slug}/message', [InboxController::class, 'start'])->name('listing.message');
+    Route::post('/listing/{listing:slug}/bids', [ListingController::class, 'bid'])->name('listing.bids.store');
     Route::get('/favorites', [FavoritesController::class, 'index'])->name('favorites.index');
     Route::get('/inbox', [InboxController::class, 'index'])->name('inbox.index');
     Route::get('/inbox/{conversation}', [InboxController::class, 'show'])->name('inbox.show');
+    Route::post('/inbox/{conversation}/messages', [InboxController::class, 'store'])->name('inbox.messages.store');
     Route::get('/orders', [OrderController::class, 'index'])->name('orders.index');
     Route::get('/orders/{order}', [OrderController::class, 'show'])->name('orders.show');
 });
+
+Route::get('/listing/{listing:slug}', [ListingController::class, 'show'])->name('listing.show');
 
 Route::get('dashboard', function () {
     $user = auth()->user();

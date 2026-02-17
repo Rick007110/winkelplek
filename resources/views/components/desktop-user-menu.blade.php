@@ -3,6 +3,7 @@
         :name="auth()->user()->name"
         :initials="auth()->user()->initials()"
         icon:trailing="chevrons-up-down"
+        class="text-[var(--wp-ink)]"
         data-test="sidebar-menu-button"
     />
 
@@ -13,8 +14,8 @@
                 :initials="auth()->user()->initials()"
             />
             <div class="grid flex-1 text-start text-sm leading-tight">
-                <flux:heading class="truncate">{{ auth()->user()->name }}</flux:heading>
-                <flux:text class="truncate">{{ auth()->user()->email }}</flux:text>
+                <flux:heading class="truncate text-[var(--wp-ink)]">{{ auth()->user()->name }}</flux:heading>
+                <flux:text class="truncate text-black/60">{{ auth()->user()->email }}</flux:text>
             </div>
         </div>
         <flux:menu.separator />

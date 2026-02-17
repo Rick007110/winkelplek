@@ -80,6 +80,26 @@
         color: var(--wp-ink);
     }
 
+    [data-flux-label],
+    [data-flux-text],
+    [data-flux-heading],
+    [data-flux-subheading] {
+        color: var(--wp-ink) !important;
+    }
+
+    body.wp-theme a:hover,
+    body.wp-theme [data-flux-link]:hover {
+        color: var(--wp-ink) !important;
+    }
+
+    body.wp-theme [data-flux-button].bg-transparent:hover,
+    body.wp-theme [data-flux-button].text-zinc-400:hover,
+    body.wp-theme [data-flux-button].text-zinc-500:hover,
+    body.wp-theme [data-flux-button].text-zinc-600:hover,
+    body.wp-theme [data-flux-button].text-black\/60:hover {
+        color: var(--wp-ink) !important;
+    }
+
     [data-flux-control]::placeholder {
         color: rgba(29, 26, 22, 0.45);
     }
@@ -108,6 +128,45 @@
     .wp-auth-card a:hover,
     .wp-auth-card [data-flux-link]:hover {
         color: var(--wp-ink) !important;
+    }
+
+    .wp-auth-card input[type="checkbox"],
+    .wp-auth-card [data-flux-checkbox] {
+        border: 1px solid rgba(29, 26, 22, 0.45) !important;
+        background-color: #ffffff !important;
+        accent-color: var(--wp-coral);
+    }
+
+    [data-flux-sidebar],
+    [data-flux-navlist-group] {
+        color: var(--wp-ink);
+    }
+
+    [data-flux-sidebar] [data-flux-sidebar-item],
+    [data-flux-sidebar] [data-flux-sidebar-item] * {
+        color: var(--wp-ink);
+    }
+
+    [data-flux-sidebar] [data-flux-sidebar-item]:hover,
+    [data-flux-sidebar] [data-flux-sidebar-item]:hover * {
+        color: var(--wp-ink);
+    }
+
+    [data-flux-sidebar] [data-flux-brand],
+    [data-flux-sidebar] [data-flux-sidebar-brand] {
+        color: var(--wp-ink) !important;
+    }
+
+    [data-flux-sidebar] [data-flux-heading],
+    [data-flux-sidebar] [data-flux-text],
+    [data-flux-sidebar] [data-flux-subheading] {
+        color: var(--wp-ink) !important;
+    }
+
+    [data-flux-sidebar] [data-flux-sidebar-profile] {
+        color: var(--wp-ink) !important;
+        background-color: #ffffff !important;
+        border: 1px solid rgba(29, 26, 22, 0.12) !important;
     }
 }
 

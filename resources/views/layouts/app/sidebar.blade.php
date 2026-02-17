@@ -4,7 +4,7 @@
         @include('partials.head')
     </head>
     <body class="wp-theme min-h-screen bg-[var(--wp-cream)] text-[var(--wp-ink)]">
-        <flux:sidebar sticky collapsible="mobile" class="border-e border-black/10 bg-white">
+        <flux:sidebar sticky collapsible="mobile" class="border-e border-black/10 bg-[color:var(--wp-mist)] text-[var(--wp-ink)]">
             <flux:sidebar.header>
                 <x-app-logo :sidebar="true" href="{{ route('dashboard') }}" wire:navigate />
                 <flux:sidebar.collapse class="lg:hidden" />
@@ -43,7 +43,7 @@
 
 
         <!-- Mobile User Menu -->
-        <flux:header class="lg:hidden bg-white border-b border-black/10">
+        <flux:header class="lg:hidden bg-[color:var(--wp-mist)] border-b border-black/10">
             <flux:sidebar.toggle class="lg:hidden" icon="bars-2" inset="left" />
 
             <flux:spacer />

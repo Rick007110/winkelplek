@@ -114,4 +114,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Review::class, 'reviewee_id');
     }
+
+    public function bids(): HasMany
+    {
+        return $this->hasMany(Bid::class, 'bidder_id');
+    }
 }

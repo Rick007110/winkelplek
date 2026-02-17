@@ -24,6 +24,7 @@ class Listing extends Model
         'condition',
         'status',
         'is_featured',
+        'bidding_enabled',
         'published_at',
     ];
 
@@ -31,6 +32,7 @@ class Listing extends Model
     {
         return [
             'is_featured' => 'boolean',
+            'bidding_enabled' => 'boolean',
             'published_at' => 'datetime',
         ];
     }
@@ -73,5 +75,10 @@ class Listing extends Model
     public function reviews(): HasMany
     {
         return $this->hasMany(Review::class);
+    }
+
+    public function bids(): HasMany
+    {
+        return $this->hasMany(Bid::class);
     }
 }

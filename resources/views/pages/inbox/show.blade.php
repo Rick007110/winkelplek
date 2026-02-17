@@ -28,9 +28,13 @@
             @endforelse
         </div>
 
-        <form class="mt-6 flex gap-3">
-            <flux:input placeholder="Typ je bericht..." class="flex-1" />
-            <flux:button variant="primary">Verstuur</flux:button>
+        <form method="POST" action="{{ route('inbox.messages.store', ['conversation' => $conversation->id]) }}" class="mt-6 flex gap-3">
+            @csrf
+            <flux:input name="body" placeholder="Typ je bericht..." class="flex-1" value="{{ old('body') }}" />
+            <flux:button variant="primary" type="submit">Verstuur</flux:button>
         </form>
+        @error('body')
+            <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
+        @enderror
     </section>
 @endsection

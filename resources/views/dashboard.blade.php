@@ -31,10 +31,10 @@
             <div class="rounded-lg border border-black/10 bg-white p-4">
                 <p class="text-sm font-semibold">Snelle acties</p>
                 <div class="mt-4 grid gap-3 sm:grid-cols-2">
-                    <flux:button href="{{ route('listing.create') }}" variant="subtle">Advertentie plaatsen</flux:button>
-                    <flux:button href="{{ route('inbox.index') }}" variant="subtle">Bekijk inbox</flux:button>
-                    <flux:button href="{{ route('orders.index') }}" variant="subtle">Bekijk orders</flux:button>
-                    <flux:button href="{{ route('favorites.index') }}" variant="subtle">Favorieten beheren</flux:button>
+                    <flux:button href="{{ route('listing.create') }}" variant="subtle" class="text-black/60 hover:text-[color:var(--wp-ink)]">Advertentie plaatsen</flux:button>
+                    <flux:button href="{{ route('inbox.index') }}" variant="subtle" class="text-black/60 hover:text-[color:var(--wp-ink)]">Bekijk inbox</flux:button>
+                    <flux:button href="{{ route('orders.index') }}" variant="subtle" class="text-black/60 hover:text-[color:var(--wp-ink)]">Bekijk orders</flux:button>
+                    <flux:button href="{{ route('favorites.index') }}" variant="subtle" class="text-black/60 hover:text-[color:var(--wp-ink)]">Favorieten beheren</flux:button>
                 </div>
             </div>
             <div class="rounded-lg border border-black/10 bg-[color:var(--wp-mist)] p-4">
