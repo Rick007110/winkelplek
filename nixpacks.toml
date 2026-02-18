@@ -1,10 +1,10 @@
-# 1. Install PHP, Composer, Node.js, and Git
+# 1. Install PHP, Composer, Node.js, Git, and Unzip
 [phases.setup]
-nixPkgs = ["php82", "composer", "nodejs", "git"]
+nixPkgs = ["php82", "php82Packages.composer", "nodejs", "git", "unzip"]
 
 # 2. Install dependencies
 [phases.install]
-cmds = ["composer install --no-dev --optimize-autoloader", "npm install"]
+cmds = ["mkdir -p storage/framework/sessions storage/framework/views storage/framework/cache", "composer install --no-dev --optimize-autoloader", "npm install"]
 
 # 3. Build the CSS/JS
 [phases.build]
