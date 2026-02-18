@@ -1,6 +1,6 @@
 # 1. Tell Nixpacks we need PHP *and* Node.js
 [phases.setup]
-nixPkgs = ["php82", "nodejs", "npm", "git"]
+nixPkgs = ["php82", "nodejs", "git"]
 
 # 2. Tell it how to install dependencies
 [phases.install]
