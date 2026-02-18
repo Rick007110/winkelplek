@@ -1,0 +1,21 @@
+# Quick Fix for Dokploy Messaging Issue
+
+## CRITICAL: Set These in Dokploy Environment Variables
+
+```bash
+APP_URL=https://your-actual-domain.com
+SESSION_SECURE_COOKIE=true
+SESSION_DOMAIN=your-domain.com
+DB_CONNECTION=mysql  # or your database type
+```
+
+## After Deployment, Run in Dokploy Terminal:
+
+```bash
+php artisan migrate --force
+php artisan config:clear
+php artisan cache:clear
+```
+
+## Full Documentation
+See DOKPLOY-FIX.md for complete setup guide.
