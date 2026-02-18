@@ -1,14 +1,24 @@
-# 1. Install PHP, Composer, Node.js, Git, and Unzip
+# 1. Use "..." to keep auto-detected tools (PHP, Composer, Node)
+#    and only add "unzip" (which Composer often needs).
 [phases.setup]
-nixPkgs = ["php82", "php82Packages.composer", "nodejs", "git", "unzip"]
+nixPkgs = ["...", "unzip"]
 
-# 2. Install dependencies
+# 2. Install BOTH PHP and Node dependencies
 [phases.install]
-cmds = ["mkdir -p storage/framework/sessions storage/framework/views storage/framework/cache", "composer install --no-dev --optimize-autoloader", "npm install"]
+cmds = [
+    "mkdir -p storage/framework/sessions storage/framework/views storage/framework/cache",
+    "composer install --no-dev --optimize-autoloader --ignore-platform-reqs",
+    "npm install"
+]
 
-# 3. Build the CSS/JS
+# 3. Build the assets
 [phases.build]
-cmds = ["npm run build", "php artisan config:cache", "php artisan route:cache", "php artisan view:cache"]
+cmds = [
+    "npm run build",
+    "php artisan config:cache",
+    "php artisan route:cache",
+    "php artisan view:cache"
+]
 
 # 4. Start the server
 [start]
