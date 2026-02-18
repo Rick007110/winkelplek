@@ -1,0 +1,15 @@
+# 1. Tell Nixpacks we need PHP *and* Node.js
+[phases.setup]
+nixPkgs = ["php82", "nodejs", "npm", "git"]
+
+# 2. Tell it how to install dependencies
+[phases.install]
+cmds = ["composer install --no-dev --optimize-autoloader", "npm install"]
+
+# 3. Tell it to build the CSS/JS assets!
+[phases.build]
+cmds = ["npm run build", "php artisan config:cache", "php artisan route:cache", "php artisan view:cache"]
+
+# 4. Start the server on Port 80 (matching your Dokploy settings)
+[start]
+cmd = "php artisan serve --host=0.0.0.0 --port=80"
